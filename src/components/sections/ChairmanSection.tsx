@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 export default function ChairmanSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -33,18 +34,14 @@ export default function ChairmanSection() {
             <div className="relative">
               {/* Floating portrait card */}
               <div className="relative rounded-[24px] overflow-hidden aspect-[3/4] max-w-sm mx-auto lg:mx-0">
-                {/* Portrait placeholder */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#1a3a5c] to-[#0B2341]">
-                  {/* Elegant silhouette style */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#D6A54A]/20 to-[#D6A54A]/5 border-2 border-[#D6A54A]/20 mx-auto mb-6 flex items-center justify-center">
-                        <span className="font-[family-name:var(--font-playfair)] text-5xl font-bold text-[#D6A54A]/40">W</span>
-                      </div>
-                      <div className="w-16 h-[1px] bg-[#D6A54A]/30 mx-auto" />
-                    </div>
-                  </div>
-                </div>
+                {/* Founder Image */}
+                <Image
+                  src="/founder.png"
+                  alt="Founder & Chairman of Wael Pharmacy"
+                  fill
+                  className="object-cover"
+                  priority
+                />
                 {/* Glass overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0B2341]/60 to-transparent" />
               </div>
