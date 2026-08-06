@@ -5,14 +5,10 @@ import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/sections/HeroSection";
 import KPISection from "@/components/sections/KPISection";
 import TimelineSection from "@/components/sections/TimelineSection";
-import WhySection from "@/components/sections/WhySection";
 import DivisionsSection from "@/components/sections/DivisionsSection";
 import PartnersSection from "@/components/sections/PartnersSection";
 import WarehouseSection from "@/components/sections/WarehouseSection";
-import InnovationSection from "@/components/sections/InnovationSection";
 import ChairmanSection from "@/components/sections/ChairmanSection";
-import ValuesSection from "@/components/sections/ValuesSection";
-import CSRSection from "@/components/sections/CSRSection";
 import QualitySection from "@/components/sections/QualitySection";
 import NewsSection from "@/components/sections/NewsSection";
 import FAQSection from "@/components/sections/FAQSection";
@@ -26,14 +22,10 @@ export default function Home() {
         <HeroSection />
         <KPISection />
         <TimelineSection />
-        <WhySection />
         <DivisionsSection />
         <PartnersSection />
         <WarehouseSection />
-        <InnovationSection />
         <ChairmanSection />
-        <ValuesSection />
-        <CSRSection />
         <QualitySection />
         <NewsSection />
         <FAQSection />

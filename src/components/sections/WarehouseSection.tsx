@@ -1,91 +1,192 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { WAREHOUSE_FEATURES } from "@/data/siteData";
-import { CheckCircle2 } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import Image from "next/image";
+import {
+  ShieldCheck,
+  Globe,
+  Thermometer,
+  Award,
+  Headphones,
+  FileCheck,
+  Building2,
+  CheckCircle2,
+  Users
+} from "lucide-react";
+
+const WHY_PARTNER_FEATURES = [
+  {
+    icon: ShieldCheck,
+    title: "GDP Certified",
+    description: "Ensuring global standards in every process.",
+  },
+  {
+    icon: Globe,
+    title: "Nationwide Network",
+    description: "Strong distribution across Bahrain.",
+  },
+  {
+    icon: Thermometer,
+    title: "Cold Chain Experts",
+    description: "Advanced cold storage and logistics.",
+  },
+  {
+    icon: Award,
+    title: "Quality Assurance",
+    description: "Rigorous quality control at every step.",
+  },
+  {
+    icon: Headphones,
+    title: "Dedicated Support",
+    description: "Expert team always ready to help.",
+  },
+  {
+    icon: FileCheck,
+    title: "Ethical & Compliant",
+    description: "Committed to integrity and compliance.",
+  },
+];
 
 export default function WarehouseSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const { scrollYProgress } = useScroll({
-    target: imageRef,
-    offset: ["start end", "end start"],
-  });
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-  const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 md:py-32 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6" ref={ref}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left - Image with parallax */}
+    <section id="why-warehouse" ref={containerRef} className="relative py-20 lg:py-32 bg-[#FAFBFD] overflow-hidden">
+      {/* Background ambient light */}
+      <div className="absolute top-1/4 left-0 w-96 h-96 rounded-full bg-[#D6A54A]/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-[#06182E]/5 blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Left Column: Why Partner With Wael Text & 6 Features Grid */}
           <motion.div
-            ref={imageRef}
-            style={{ scale, y }}
-            className="relative rounded-[24px] overflow-hidden aspect-[4/3]"
+            initial={{ opacity: 0, x: -35 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="lg:col-span-6 text-left"
           >
-            {/* Warehouse visual */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0B2341] to-[#1a3a5c]">
-              {/* Warehouse illustration using CSS */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative w-full h-full">
-                  {/* Shelves */}
-                  {[...Array(4)].map((_, row) => (
-                    <div key={row} className="absolute flex gap-2" style={{ top: `${15 + row * 22}%`, left: "10%", right: "10%" }}>
-                      {[...Array(6)].map((_, col) => (
-                        <div
-                          key={col}
-                          className="flex-1 h-12 rounded-[4px] bg-white/10 border border-white/5"
-                          style={{
-                            background: `linear-gradient(135deg, rgba(214,165,74,${0.05 + col * 0.03}), rgba(255,255,255,${0.05 + row * 0.02}))`,
-                          }}
-                        />
-                      ))}
+            {/* Tagline */}
+            <div className="text-[#D6A54A] text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase mb-4">
+              WHY PARTNER WITH WAEL
+            </div>
+
+            {/* Headline */}
+            <h2 className="font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#06182E] leading-[1.18] mb-8 lg:mb-12">
+              Built on Quality.
+              <br />
+              <span className="text-[#06182E]">Driven by Trust.</span>
+            </h2>
+
+            {/* 6 Features Grid (2 Columns x 3 Rows) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+              {WHY_PARTNER_FEATURES.map((feature, idx) => {
+                const Icon = feature.icon;
+                return (
+                  <motion.div
+                    key={feature.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.1 * idx, duration: 0.5 }}
+                    className="flex items-start gap-4 group"
+                  >
+                    {/* Icon in light rounded box */}
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-100/90 group-hover:bg-[#D6A54A]/10 text-[#06182E] group-hover:text-[#D6A54A] flex items-center justify-center shrink-0 border border-slate-200/60 transition-colors duration-300">
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.6]" />
                     </div>
-                  ))}
-                  {/* Temperature indicator */}
-                  <div className="absolute top-6 right-6 px-4 py-2 rounded-[12px] bg-white/10 backdrop-blur-sm border border-white/10">
-                    <span className="text-[#D6A54A] text-sm font-mono font-bold">2-8°C</span>
+
+                    <div>
+                      <h3 className="text-[#06182E] font-bold text-sm sm:text-base mb-1 group-hover:text-[#D6A54A] transition-colors">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Right Column: Warehouse Image + Floating Dark Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 35 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="lg:col-span-6"
+          >
+            <div className="relative rounded-[28px] lg:rounded-[36px] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.08)] border border-gray-100 aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-[520px] group">
+              
+              {/* Warehouse High-Res Facility Image */}
+              <Image
+                src="/images/Warehouse-image.png"
+                alt="Wael Pharmacy State of the Art Warehouse Facility"
+                fill
+                priority
+                className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+
+              {/* Subtle gradient shadow over image */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#06182E]/50 via-transparent to-transparent pointer-events-none" />
+
+              {/* Temperature Live Status Badge (Top-Left overlay) */}
+              <div className="absolute top-3 left-3 sm:top-5 sm:left-5 inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-2 rounded-full bg-[#06182E]/85 backdrop-blur-md border border-white/15 text-white shadow-lg">
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                <span className="text-[10px] sm:text-xs font-semibold tracking-wide text-white/90">
+                  <span className="hidden sm:inline">GDP Certified Facility • </span>2°C to 8°C Monitored
+                </span>
+              </div>
+
+              {/* Floating Dark Navy Card on Bottom-Right (Scaled for mobile) */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="absolute bottom-3 right-3 left-3 sm:bottom-6 sm:right-6 sm:left-auto sm:w-[280px] lg:w-[300px] bg-[#06182E]/95 backdrop-blur-xl border border-white/15 rounded-xl sm:rounded-2xl p-3.5 sm:p-5 lg:p-6 text-white shadow-xl sm:shadow-2xl"
+              >
+                {/* Title */}
+                <h4 className="font-[family-name:var(--font-playfair)] text-sm sm:text-lg lg:text-xl font-bold text-white mb-2 sm:mb-3 leading-snug">
+                  Excellence You Can Rely On
+                </h4>
+
+                {/* Team Avatars + Badge */}
+                <div className="flex items-center -space-x-2 sm:-space-x-2.5 mb-2 sm:mb-3">
+                  {/* Avatar 1 */}
+                  <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-blue-400 to-indigo-600 border-2 border-[#06182E] flex items-center justify-center font-bold text-[10px] sm:text-xs text-white">
+                    WP
+                  </div>
+                  {/* Avatar 2 */}
+                  <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-600 border-2 border-[#06182E] flex items-center justify-center font-bold text-[10px] sm:text-xs text-white">
+                    DR
+                  </div>
+                  {/* Avatar 3 */}
+                  <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-teal-400 to-emerald-600 border-2 border-[#06182E] flex items-center justify-center font-bold text-[10px] sm:text-xs text-white">
+                    MD
+                  </div>
+                  {/* Avatar 4 */}
+                  <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-rose-400 to-pink-600 border-2 border-[#06182E] flex items-center justify-center font-bold text-[10px] sm:text-xs text-white">
+                    QA
+                  </div>
+
+                  {/* Gold Badge */}
+                  <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-[#D6A54A] text-[#06182E] font-extrabold text-[10px] sm:text-xs flex items-center justify-center border-2 border-[#06182E] shadow-sm">
+                    +220
                   </div>
                 </div>
-              </div>
-            </div>
-            {/* Overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B2341]/40 to-transparent" />
-          </motion.div>
 
-          {/* Right - Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <span className="text-[#D6A54A] text-sm font-medium tracking-[0.2em] uppercase">Infrastructure</span>
-            <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-5xl font-bold text-[#0B2341] mt-4 mb-6">
-              Warehouse & Distribution Excellence
-            </h2>
-            <p className="text-gray-600 mb-10 leading-relaxed">
-              Our state-of-the-art GDP-compliant warehousing facility combines advanced technology with rigorous quality processes, ensuring every product reaches its destination in perfect condition.
-            </p>
+                {/* Subtitle */}
+                <p className="text-[10px] sm:text-xs text-white/70 font-medium leading-normal">
+                  Professionals dedicated to your health
+                </p>
+              </motion.div>
 
-            {/* Checklist */}
-            <div className="space-y-5">
-              {WAREHOUSE_FEATURES.map((feature, i) => (
-                <motion.div
-                  key={feature}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
-                  className="flex items-start gap-4"
-                >
-                  <CheckCircle2 className="w-6 h-6 text-[#D6A54A] flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-                  <span className="text-[#0B2341] font-medium text-sm leading-relaxed">{feature}</span>
-                </motion.div>
-              ))}
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>

@@ -38,7 +38,7 @@ export default function ChairmanSection() {
 
                 <Image
                   src="/images/founder.png"
-                  alt="Founder of Wael Pharmacy"
+                  alt="Abdulrahman Almulumeri - Chairman & MD"
                   fill
                   priority
                   quality={100}
@@ -97,12 +97,12 @@ export default function ChairmanSection() {
               <div className="w-16 h-[1px] bg-[#D6A54A]" />
               <div>
                 <p className="font-[family-name:var(--font-playfair)] text-xl font-bold text-white">
-                  Chairman
+                  Abdulrahman Almulumeri
                 </p>
-                <p className="text-[#D6A54A] text-sm mt-1">Wael Pharmacy Co. W.L.L.</p>
+                <p className="text-[#D6A54A] text-sm mt-1">Chairman & MD, Wael Pharmacy Co. W.L.L.</p>
                 {/* Signature style text */}
                 <p className="font-[family-name:var(--font-playfair)] text-2xl italic text-[#D6A54A]/40 mt-2">
-                  Wael Group
+                  Abdulrahman Almulumeri
                 </p>
               </div>
             </div>

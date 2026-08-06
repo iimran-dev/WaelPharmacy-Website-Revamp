@@ -1,7 +1,8 @@
 "use client";
 
-import { Phone, Mail, MapPin, ArrowRight, Linkedin, Twitter, Facebook, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowRight, Linkedin, Twitter, Facebook, Instagram, Clock } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 const companyLinks = [
   { label: "About Us", href: "#about" },
@@ -39,20 +40,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Company info */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-[12px] bg-gradient-to-br from-[#D6A54A] to-[#b8872e] flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth={1.5}>
-                  <path d="M12 2L12 6M12 6C10.5 6 9.3 7 9 8.5L8 14H16L15 8.5C14.7 7 13.5 6 12 6Z" />
-                  <line x1="8" y1="14" x2="16" y2="14" />
-                  <line x1="10" y1="14" x2="10" y2="18" />
-                  <line x1="14" y1="14" x2="14" y2="18" />
-                  <line x1="8" y1="18" x2="16" y2="18" />
-                </svg>
-              </div>
-              <div>
-                <h3 className="text-white font-bold text-sm">Wael Pharmacy</h3>
-                <p className="text-[#D6A54A] text-xs">EST. 1966</p>
-              </div>
+            <div className="mb-6">
+              <a href="#home" className="inline-block">
+                <Image
+                  src="/logo.svg"
+                  alt="Wael Pharmacy Official Logo"
+                  width={260}
+                  height={80}
+                  className="h-16 sm:h-18 lg:h-20 w-auto object-contain"
+                />
+              </a>
             </div>
             <p className="text-white/40 text-sm leading-relaxed mb-6">
               Bahrain&apos;s trusted pharmaceutical distribution and healthcare solutions partner for over 58 years.
@@ -110,22 +107,30 @@ export default function Footer() {
           {/* Contact & Newsletter */}
           <div>
             <h4 className="text-white font-semibold text-sm mb-6 tracking-wide">Contact</h4>
-            <div className="space-y-4 mb-8">
+            <div className="space-y-3.5 mb-8">
               <div className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-[#D6A54A] flex-shrink-0 mt-1" strokeWidth={1.5} />
-                <span className="text-white/40 text-sm">Manama, Kingdom of Bahrain</span>
+                <MapPin className="w-4 h-4 text-[#D6A54A] shrink-0 mt-1" strokeWidth={1.5} />
+                <span className="text-white/50 text-xs sm:text-sm leading-relaxed">
+                  Building 806, Road 3315, Block 333, Umm Al Hassam Area, P.O. Box: 648, Bahrain
+                </span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[#D6A54A] flex-shrink-0" strokeWidth={1.5} />
-                <a href="tel:+97317000000" className="text-white/40 text-sm hover:text-[#D6A54A] transition-colors duration-300">
-                  +973 1 700 0000
+                <Phone className="w-4 h-4 text-[#D6A54A] shrink-0" strokeWidth={1.5} />
+                <a href="tel:+97317377000" className="text-white/50 text-xs sm:text-sm hover:text-[#D6A54A] transition-colors duration-300">
+                  +973 1737 7000
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#D6A54A] flex-shrink-0" strokeWidth={1.5} />
-                <a href="mailto:info@waelpharmacy.com" className="text-white/40 text-sm hover:text-[#D6A54A] transition-colors duration-300">
-                  info@waelpharmacy.com
+                <Mail className="w-4 h-4 text-[#D6A54A] shrink-0" strokeWidth={1.5} />
+                <a href="mailto:sales@waelpharmacy.com" className="text-white/50 text-xs sm:text-sm hover:text-[#D6A54A] transition-colors duration-300">
+                  sales@waelpharmacy.com
                 </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Clock className="w-4 h-4 text-[#D6A54A] shrink-0" strokeWidth={1.5} />
+                <span className="text-white/50 text-xs sm:text-sm">
+                  Sun to Thu: 7:30 AM - 5:30 PM
+                </span>
               </div>
             </div>
 

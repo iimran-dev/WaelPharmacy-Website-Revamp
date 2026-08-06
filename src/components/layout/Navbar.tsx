@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronRight } from "lucide-react";
+import Image from "next/image";
 import { NAV_ITEMS } from "@/data/siteData";
 import { Button } from "@/components/ui/button";
 
@@ -81,26 +82,23 @@ export default function Navbar() {
               : "border-white/15 bg-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.08)] backdrop-blur-xl")
           }
         >
-          {/* Logo */}
+          {/* Official Logo */}
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick("#home");
             }}
-            className="group flex shrink-0 items-center gap-3"
+            className="group flex shrink-0 items-center transition-opacity duration-300 hover:opacity-90 py-0.5"
           >
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#D6A54A] to-[#b8872e] shadow-md transition-shadow duration-300 group-hover:shadow-[0_0_20px_rgba(214,165,74,0.4)]">
-              <PharmacyLampIcon className="h-5 w-5 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className="font-heading text-lg font-bold leading-tight tracking-tight text-white">
-                Wael Pharmacy
-              </span>
-              <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#D6A54A]/80">
-                Est. 1966
-              </span>
-            </div>
+            <Image
+              src="/logo.svg"
+              alt="Wael Pharmacy Official Logo"
+              width={240}
+              height={70}
+              className="h-13 sm:h-15 lg:h-16 w-auto object-contain"
+              priority
+            />
           </a>
 
           {/* Desktop Navigation */}
@@ -140,11 +138,11 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden items-center gap-3 lg:flex">
             <a
-              href="tel:+97317000000"
+              href="tel:+97317377000"
               className="flex items-center gap-2 text-xs font-medium text-white/60 transition-colors duration-300 hover:text-[#D6A54A]"
             >
               <Phone className="h-3.5 w-3.5" />
-              <span>+973 1 700 0000</span>
+              <span>+973 1737 7000</span>
             </a>
             <Button
               onClick={() => handleNavClick("#contact")}
@@ -253,11 +251,11 @@ export default function Navbar() {
                 className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-8"
               >
                 <a
-                  href="tel:+97317000000"
+                  href="tel:+97317377000"
                   className="flex items-center gap-3 text-sm text-white/60 transition-colors duration-300 hover:text-[#D6A54A]"
                 >
                   <Phone className="h-4 w-4" />
-                  <span>+973 1 700 0000</span>
+                  <span>+973 1737 7000</span>
                 </a>
                 <Button
                   onClick={() => handleNavClick("#contact")}
