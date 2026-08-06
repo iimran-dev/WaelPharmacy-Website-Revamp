@@ -72,11 +72,11 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 mx-4 mt-4"
+        className="fixed top-0 left-0 right-0 z-50 mx-2 sm:mx-4 mt-2 sm:mt-4"
       >
         <nav
           className={
-            "mx-auto flex max-w-7xl items-center justify-between rounded-[24px] border px-4 py-3 transition-all duration-500 sm:px-6 lg:px-8 " +
+            "mx-auto flex max-w-7xl items-center justify-between rounded-xl sm:rounded-[24px] border px-3.5 py-2 sm:px-6 sm:py-2.5 transition-all duration-500 " +
             (isScrolled
               ? "border-white/10 bg-[#0B2341]/95 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl"
               : "border-white/15 bg-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.08)] backdrop-blur-xl")
@@ -94,9 +94,9 @@ export default function Navbar() {
             <Image
               src="/logo.svg"
               alt="Wael Pharmacy Official Logo"
-              width={240}
-              height={70}
-              className="h-13 sm:h-15 lg:h-16 w-auto object-contain"
+              width={220}
+              height={65}
+              className="h-10 sm:h-12 lg:h-14 w-auto object-contain min-w-[150px] sm:min-w-[180px]"
               priority
             />
           </a>
@@ -194,14 +194,14 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#0B2341]/98 backdrop-blur-xl lg:hidden"
+            className="fixed inset-0 z-40 bg-[#041226] backdrop-blur-3xl lg:hidden overflow-y-auto"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex h-full flex-col justify-center px-8"
+              className="flex min-h-full flex-col justify-start pt-28 pb-12 px-6 sm:px-8"
             >
               <nav className="flex flex-col gap-1">
                 {NAV_ITEMS.map((item, index) => {

@@ -59,7 +59,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative min-h-[90vh] lg:min-h-screen bg-[#041226] overflow-hidden pt-24 pb-12 sm:pt-32 sm:pb-20 lg:pt-36 lg:pb-28 flex flex-col justify-between">
+    <section id="home" className="relative min-h-[90vh] lg:min-h-screen bg-[#041226] overflow-hidden pt-20 pb-10 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-28 flex flex-col justify-between">
       {/* Background Building Image & Dark Blue Gradient Overlays */}
       <div className="absolute inset-0 z-0">
         {/* Right side Building Photo */}
@@ -190,37 +190,37 @@ export default function HeroSection() {
       </div>
 
       {/* Floating KPI Section */}
-      <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 w-full mt-6 sm:mt-10 lg:mt-12 -mb-8 sm:-mb-12 lg:-mb-14">
+      <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 w-full mt-6 sm:mt-10 lg:mt-12 -mb-8 sm:-mb-12 lg:-mb-14 flex justify-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.7 }}
-          className="bg-white/95 backdrop-blur-xl rounded-[20px] sm:rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-gray-100/90 p-3.5 sm:p-5 lg:p-7"
+          className="w-full bg-white/95 backdrop-blur-xl rounded-[20px] sm:rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-gray-100/90 p-4 sm:p-6 lg:p-8"
         >
-          {/* Balanced Grid: 2 cols on mobile (card 5 centered), 5 cols on tablet (640px+) & desktop */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 sm:gap-3 lg:gap-5">
+          {/* Balanced Centered Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 items-stretch justify-center">
             {HERO_KPIS.map((stat, index) => {
               const Icon = stat.icon;
               return (
                 <div
                   key={index}
-                  className={`group bg-slate-50 hover:bg-[#041226]/[0.03] border border-slate-200/70 rounded-xl sm:rounded-2xl p-3 sm:p-3.5 lg:p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#D6A54A]/40 active:scale-95 ${
+                  className={`group bg-slate-50 hover:bg-[#041226]/[0.03] border border-slate-200/70 rounded-xl sm:rounded-2xl p-3.5 sm:p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#D6A54A]/40 active:scale-95 flex flex-col items-center justify-center ${
                     index === 4 ? "col-span-2 sm:col-span-1" : ""
                   }`}
                 >
                   {/* Icon badge */}
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-11 lg:h-11 rounded-lg sm:rounded-xl bg-white text-[#041226] group-hover:text-[#D6A54A] flex items-center justify-center mx-auto mb-1.5 sm:mb-2 shadow-sm border border-slate-100 transition-colors">
-                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2]" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-white text-[#041226] group-hover:text-[#D6A54A] flex items-center justify-center mb-2 sm:mb-2.5 shadow-sm border border-slate-100 transition-colors shrink-0">
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 stroke-[2]" />
                   </div>
 
                   {/* Plus_Jakarta_Sans Extra-Bold Number */}
-                  <div className="font-[family-name:var(--font-jakarta)] text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#041226] tracking-tight leading-none mb-1">
-                    {stat.number}
+                  <div className="font-[family-name:var(--font-jakarta)] text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#041226] tracking-tight leading-none mb-1 flex items-baseline justify-center gap-0.5">
+                    <span>{stat.number}</span>
                     <span className="text-[#D6A54A] font-extrabold">{stat.suffix}</span>
                   </div>
 
                   {/* Bold Stat Label */}
-                  <div className="font-[family-name:var(--font-jakarta)] text-[10px] sm:text-xs lg:text-sm font-bold text-slate-700 tracking-tight leading-snug">
+                  <div className="font-[family-name:var(--font-jakarta)] text-[11px] sm:text-xs lg:text-sm font-bold text-slate-700 tracking-tight leading-tight text-center">
                     {stat.label}
                   </div>
                 </div>
