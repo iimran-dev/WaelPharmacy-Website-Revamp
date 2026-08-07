@@ -37,7 +37,7 @@ export default function TimelineSection() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   return (
-    <section id="about-timeline" ref={containerRef} className="relative pt-12 sm:pt-16 pb-20 lg:pb-32 bg-[#FAFBFD] overflow-hidden">
+    <section id="about-timeline" ref={containerRef} className="relative pt-16 sm:pt-24 lg:pt-28 pb-20 lg:pb-32 bg-[#FAFBFD] overflow-hidden">
       {/* Subtle ambient lighting */}
       <div className="absolute top-1/3 left-0 w-96 h-96 rounded-full bg-[#D6A54A]/5 blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-0 w-96 h-96 rounded-full bg-[#06182E]/5 blur-3xl pointer-events-none" />

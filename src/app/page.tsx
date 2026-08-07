@@ -28,8 +28,7 @@ export default function Home() {
         <ChairmanSection />
         <QualitySection />
         <NewsSection />
-        <FAQSection />
-        <CTABanner />
+        {/*<CTABanner />*/}
       </main>
       <Footer />
     </div>

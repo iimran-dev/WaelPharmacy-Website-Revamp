@@ -1,9 +1,33 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowRight, Play, X, Upload, Video, Building2, Users, Globe, Package, Award, Sparkles } from "lucide-react";
 import Image from "next/image";
+
+function AnimatedCounter({ value, duration = 2.2 }: { value: string; duration?: number }) {
+  const numericValue = parseInt(value.replace(/,/g, ""), 10);
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-20px" });
+
+  useEffect(() => {
+    if (!isInView || isNaN(numericValue)) return;
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
+      const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setCount(Math.floor(easeOut * numericValue));
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, [isInView, numericValue, duration]);
+
+  return <span ref={ref}>{isInView ? count.toLocaleString() : "0"}</span>;
+}
 
 const HERO_KPIS = [
   {
@@ -60,29 +84,31 @@ export default function HeroSection() {
 
   return (
     <section id="home" className="relative min-h-[90vh] lg:min-h-screen bg-[#041226] overflow-hidden pt-20 pb-10 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-28 flex flex-col justify-between">
-      {/* Background Building Image & Dark Blue Gradient Overlays */}
-      <div className="absolute inset-0 z-0">
-        {/* Right side Building Photo */}
-        <div className="absolute top-0 right-0 w-full lg:w-[65%] h-full">
+      {/* Background Building Image & Mild Left Navy Gradient Overlay */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-[#041226]">
+        {/* Full-bleed max resolution high-quality background image */}
+        <div className="absolute inset-0 w-full h-full">
           <Image
-            src="/images/hero-building.png"
+            src="/images/Hero-image.png"
             alt="Wael Pharmacy Headquarters Building"
             fill
             priority
-            className="object-cover object-center lg:object-right opacity-85 sm:opacity-100"
-            sizes="(max-width: 1024px) 100vw, 65vw"
+            quality={100}
+            unoptimized
+            className="object-cover object-center lg:object-right opacity-95 sm:opacity-100"
+            sizes="100vw"
           />
         </div>
 
-        {/* Dynamic Gradient Mesh Overlays for ultra-modern look & mobile readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#041226]/90 via-[#041226]/95 to-[#041226] sm:bg-gradient-to-r sm:from-[#041226] sm:via-[#041226]/95 sm:via-[#041226]/80 sm:to-transparent w-full lg:w-[72%]" />
-        
-        {/* Glowing mesh light circles */}
-        <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-[#D6A54A]/10 blur-[100px] pointer-events-none" />
-        <div className="absolute bottom-1/3 right-10 w-96 h-96 rounded-full bg-[#1a4a7a]/20 blur-[120px] pointer-events-none" />
+        {/* Mild Navy Gradient Overlay on the Left Side Only for text legibility */}
+        <div className="absolute inset-y-0 left-0 w-full lg:w-[58%] bg-gradient-to-r from-[#041226] via-[#041226]/85 sm:via-[#041226]/60 to-transparent z-10" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#041226]/60 to-transparent z-10" />
+
+        {/* Ambient glow accent */}
+        <div className="absolute top-1/4 left-10 w-72 h-72 rounded-full bg-[#D6A54A]/10 blur-[100px] pointer-events-none z-10" />
 
         {/* Bottom fade into next section */}
-        <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-white via-white/50 to-transparent" />
+        <div className="absolute bottom-0 inset-x-0 h-20 bg-gradient-to-t from-white via-white/40 to-transparent z-10" />
       </div>
 
       {/* Hidden File Input for Video Upload */}
@@ -97,7 +123,7 @@ export default function HeroSection() {
       {/* Main Hero Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 w-full pt-4 sm:pt-8 lg:pt-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           {/* Left Column: Text & CTAs */}
           <div className="lg:col-span-7 text-left">
             <motion.div
@@ -160,7 +186,7 @@ export default function HeroSection() {
                 aria-label="Play Video"
               >
                 <Play className="w-5 h-5 sm:w-7 sm:h-7 fill-white text-white ml-1 group-hover:text-[#D6A54A] group-hover:fill-[#D6A54A] transition-colors" />
-                
+
                 {/* Outer pulse animation */}
                 <span className="absolute -inset-2 rounded-full border border-white/30 animate-ping opacity-40 pointer-events-none" />
               </button>
@@ -190,38 +216,40 @@ export default function HeroSection() {
       </div>
 
       {/* Floating KPI Section */}
-      <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 w-full mt-6 sm:mt-10 lg:mt-12 -mb-8 sm:-mb-12 lg:-mb-14 flex justify-center">
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-6 sm:mt-10 lg:mt-12 -mb-10 sm:-mb-14 lg:-mb-16 flex justify-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.7 }}
-          className="w-full bg-white/95 backdrop-blur-xl rounded-[20px] sm:rounded-[28px] shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-gray-100/90 p-4 sm:p-6 lg:p-8"
+          className="w-full bg-white rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.07)] border border-slate-100 p-4 sm:p-6 lg:py-7 lg:px-8"
         >
-          {/* Balanced Centered Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 items-stretch justify-center">
+          {/* 5-Column Responsive Horizontal Card Grid matching reference image */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-5 lg:gap-6 items-center">
             {HERO_KPIS.map((stat, index) => {
               const Icon = stat.icon;
               return (
                 <div
                   key={index}
-                  className={`group bg-slate-50 hover:bg-[#041226]/[0.03] border border-slate-200/70 rounded-xl sm:rounded-2xl p-3.5 sm:p-4 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-[#D6A54A]/40 active:scale-95 flex flex-col items-center justify-center ${
-                    index === 4 ? "col-span-2 sm:col-span-1" : ""
-                  }`}
+                  className={`flex items-center gap-3 sm:gap-3.5 lg:gap-4 p-2 sm:p-2.5 rounded-2xl transition-all duration-300 hover:bg-slate-50/80 ${index === 4 ? "col-span-2 sm:col-span-1 justify-center sm:justify-start" : ""
+                    }`}
                 >
-                  {/* Icon badge */}
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-white text-[#041226] group-hover:text-[#D6A54A] flex items-center justify-center mb-2 sm:mb-2.5 shadow-sm border border-slate-100 transition-colors shrink-0">
-                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-5 lg:h-5 stroke-[2]" />
+                  {/* Soft Light Blue Icon Box matching reference image */}
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-2xl bg-[#EEF4F9] text-[#0B2545] flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.8]" />
                   </div>
 
-                  {/* Plus_Jakarta_Sans Extra-Bold Number */}
-                  <div className="font-[family-name:var(--font-jakarta)] text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#041226] tracking-tight leading-none mb-1 flex items-baseline justify-center gap-0.5">
-                    <span>{stat.number}</span>
-                    <span className="text-[#D6A54A] font-extrabold">{stat.suffix}</span>
-                  </div>
+                  {/* Text Container: Bold Dark Number & Gray Label */}
+                  <div className="flex flex-col text-left justify-center min-w-0">
+                    <div className="font-[family-name:var(--font-jakarta)] text-2xl sm:text-3xl lg:text-3xl xl:text-4xl font-extrabold text-[#0B2545] tracking-tight leading-none mb-1 flex items-baseline">
+                      <span>
+                        <AnimatedCounter value={stat.number} />
+                      </span>
+                      <span>{stat.suffix}</span>
+                    </div>
 
-                  {/* Bold Stat Label */}
-                  <div className="font-[family-name:var(--font-jakarta)] text-[11px] sm:text-xs lg:text-sm font-bold text-slate-700 tracking-tight leading-tight text-center">
-                    {stat.label}
+                    <div className="text-xs sm:text-sm font-medium text-slate-500 leading-tight">
+                      {stat.label}
+                    </div>
                   </div>
                 </div>
               );

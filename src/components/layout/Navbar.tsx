@@ -72,16 +72,14 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 mx-2 sm:mx-4 mt-2 sm:mt-4"
+        className={
+          "fixed top-0 left-0 right-0 z-50 w-full transition-all duration-500 " +
+          (isScrolled
+            ? "bg-[#0B2341]/95 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl"
+            : "bg-transparent backdrop-blur-none")
+        }
       >
-        <nav
-          className={
-            "mx-auto flex max-w-7xl items-center justify-between rounded-xl sm:rounded-[24px] border px-3.5 py-2 sm:px-6 sm:py-2.5 transition-all duration-500 " +
-            (isScrolled
-              ? "border-white/10 bg-[#0B2341]/95 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-xl"
-              : "border-white/15 bg-white/[0.08] shadow-[0_4px_24px_rgba(0,0,0,0.08)] backdrop-blur-xl")
-          }
-        >
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-3.5 transition-all duration-500">
           {/* Official Logo */}
           <a
             href="#home"
@@ -102,7 +100,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden items-center gap-1 lg:flex">
+          <div className="hidden items-center gap-1.5 lg:flex">
             {NAV_ITEMS.map((item) => {
               const sectionId = item.href.replace("#", "");
               const isActive = activeSection === sectionId;
@@ -115,10 +113,10 @@ export default function Navbar() {
                     handleNavClick(item.href);
                   }}
                   className={
-                    "group relative px-3 py-2 text-[13px] font-medium tracking-wide transition-colors duration-300 " +
+                    "group relative px-3.5 py-2 text-[13px] font-semibold tracking-wide transition-colors duration-300 " +
                     (isActive
                       ? "text-[#D6A54A]"
-                      : "text-white/70 hover:text-white")
+                      : "text-white/80 hover:text-white")
                   }
                 >
                   {item.label}
@@ -126,8 +124,8 @@ export default function Navbar() {
                     className={
                       "absolute bottom-0 left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-[#D6A54A] transition-all duration-300 " +
                       (isActive
-                        ? "w-5"
-                        : "w-0 group-hover:w-5")
+                        ? "w-6"
+                        : "w-0 group-hover:w-6")
                     }
                   />
                 </a>
@@ -136,10 +134,10 @@ export default function Navbar() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-4 lg:flex">
             <a
               href="tel:+97317377000"
-              className="flex items-center gap-2 text-xs font-medium text-white/60 transition-colors duration-300 hover:text-[#D6A54A]"
+              className="flex items-center gap-2 text-xs font-medium text-white/70 transition-colors duration-300 hover:text-[#D6A54A]"
             >
               <Phone className="h-3.5 w-3.5" />
               <span>+973 1737 7000</span>
@@ -147,9 +145,9 @@ export default function Navbar() {
             <Button
               onClick={() => handleNavClick("#contact")}
               size="sm"
-              className="rounded-full bg-gradient-to-r from-[#D6A54A] to-[#b8872e] px-5 text-xs font-semibold text-white shadow-[0_0_20px_rgba(214,165,74,0.25)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(214,165,74,0.4)] hover:brightness-110"
+              className="rounded-lg bg-[#041226] border border-white/20 hover:border-white/40 px-5 text-xs font-semibold text-white shadow-md transition-all duration-300 hover:bg-[#08203e]"
             >
-              Get in Touch
+              Partner With Us
             </Button>
           </div>
 
