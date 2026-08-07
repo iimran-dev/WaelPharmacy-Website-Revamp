@@ -6,6 +6,7 @@ import { Menu, X, Phone, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { NAV_ITEMS } from "@/data/siteData";
 import { Button } from "@/components/ui/button";
+import { assetPath } from "@/utils/basePath";
 
 const SCROLL_THRESHOLD = 50;
 
@@ -90,7 +91,7 @@ export default function Navbar() {
             className="group flex shrink-0 items-center transition-opacity duration-300 hover:opacity-90 py-0.5"
           >
             <Image
-              src="/logo.svg"
+              src={assetPath("/logo.svg")}
               alt="Wael Pharmacy Official Logo"
               width={220}
               height={65}

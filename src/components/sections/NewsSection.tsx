@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight, ChevronDown, Clock, Calendar, X, Sparkles } from "lucide-react";
+import { assetPath } from "@/utils/basePath";
 
 const BLOG_POSTS = [
   {
@@ -12,7 +13,7 @@ const BLOG_POSTS = [
     title: "The Future of Healthcare Distribution in Bahrain",
     date: "May 10, 2025",
     readTime: "5 min read",
-    image: "/images/news-1.jpg",
+    image: assetPath("/images/news-1.jpg"),
     content: "Healthcare logistics in Bahrain is undergoing a rapid evolution. From AI-driven demand forecasting to automated cold storage, Wael Pharmacy continues to lead the market with cutting-edge infrastructure and uncompromised quality standards.",
   },
   {
@@ -21,7 +22,7 @@ const BLOG_POSTS = [
     title: "Wael Pharmacy Expands Cold Chain Capacity",
     date: "April 28, 2025",
     readTime: "4 min read",
-    image: "/images/news-2.jpg",
+    image: assetPath("/images/news-2.jpg"),
     content: "Our newly commissioned cold-chain facility doubles our storage volume for temperature-sensitive biologics and vaccines, guaranteeing 2-8°C precision monitoring from warehouse arrival to hospital delivery.",
   },
   {
@@ -30,7 +31,7 @@ const BLOG_POSTS = [
     title: "Ensuring Quality & Safety in Every Step",
     date: "April 15, 2025",
     readTime: "6 min read",
-    image: "/images/news-3.jpg",
+    image: assetPath("/images/news-3.jpg"),
     content: "Quality assurance is at the core of our operations. Explore how our multi-stage inspection protocols, GDP compliance, and continuous staff training protect healthcare integrity across the Kingdom.",
   },
 ];

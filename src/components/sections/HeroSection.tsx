@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ArrowRight, Play, X, Upload, Video, Building2, Users, Globe, Package, Award, Sparkles } from "lucide-react";
 import Image from "next/image";
+import { assetPath } from "@/utils/basePath";
 
 function AnimatedCounter({ value, duration = 2.2 }: { value: string; duration?: number }) {
   const numericValue = parseInt(value.replace(/,/g, ""), 10);
@@ -89,7 +90,7 @@ export default function HeroSection() {
         {/* Full-bleed max resolution high-quality background image */}
         <div className="absolute inset-0 w-full h-full">
           <Image
-            src="/images/Hero-image.png"
+            src={assetPath("/images/Hero-image.png")}
             alt="Wael Pharmacy Headquarters Building"
             fill
             priority

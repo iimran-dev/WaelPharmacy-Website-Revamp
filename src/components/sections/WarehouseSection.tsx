@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import { assetPath } from "@/utils/basePath";
 import {
   ShieldCheck,
   Globe,
@@ -122,7 +123,7 @@ export default function WarehouseSection() {
               
               {/* Warehouse High-Res Facility Image */}
               <Image
-                src="/images/Warehouse-image.png"
+                src={assetPath("/images/Warehouse-image.png")}
                 alt="Wael Pharmacy State of the Art Warehouse Facility"
                 fill
                 priority

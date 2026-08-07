@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { assetPath } from "@/utils/basePath";
 
 export default function ChairmanSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -61,7 +62,7 @@ export default function ChairmanSection() {
               {/* Portrait Card */}
               <div className="relative rounded-[24px] overflow-hidden aspect-[3/4] w-full shadow-2xl border border-white/10">
                 <Image
-                  src="/images/founder.png"
+                  src={assetPath("/images/founder.png")}
                   alt="Abdulrahman Almulumeri - Chairman & MD"
                   fill
                   priority

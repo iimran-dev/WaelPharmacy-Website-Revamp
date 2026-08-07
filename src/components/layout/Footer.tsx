@@ -3,6 +3,7 @@
 import { Phone, Mail, MapPin, ArrowRight, Linkedin, Twitter, Facebook, Instagram, Clock } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
+import { assetPath } from "@/utils/basePath";
 
 const companyLinks = [
   { label: "About Us", href: "#about" },
@@ -43,7 +44,7 @@ export default function Footer() {
             <div className="mb-6">
               <a href="#home" className="inline-block">
                 <Image
-                  src="/logo.svg"
+                  src={assetPath("/logo.svg")}
                   alt="Wael Pharmacy Official Logo"
                   width={260}
                   height={80}
